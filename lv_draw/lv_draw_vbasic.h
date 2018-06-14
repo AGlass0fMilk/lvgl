@@ -13,7 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
+#include "../lv_conf_lib.h"
 
 #if LV_VDB_SIZE != 0
 

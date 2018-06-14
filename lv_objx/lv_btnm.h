@@ -14,7 +14,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
+#include "../lv_conf_lib.h"
 #if USE_LV_BTNM != 0
 
 #include "../lv_core/lv_obj.h"

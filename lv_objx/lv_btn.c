@@ -7,7 +7,7 @@
  *      INCLUDES
  *********************/
 
-#include "../../lv_conf.h"
+#include "../lv_conf_lib.h"
 #if USE_LV_BTN != 0
 
 #include <string.h>

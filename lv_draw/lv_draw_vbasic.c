@@ -3,12 +3,11 @@
  * 
  */
 
-#include "../../lv_conf.h"
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
 
+#include "../lv_conf_lib.h"
 #include "../lv_hal/lv_hal_disp.h"
 #include "../lv_misc/lv_area.h"
 #include "../lv_misc/lv_font.h"

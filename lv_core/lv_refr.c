@@ -6,9 +6,10 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
 #include <stddef.h>
 #include "lv_refr.h"
+
+#include "../lv_conf_lib.h"
 #include "lv_vdb.h"
 #include "../lv_hal/lv_hal_tick.h"
 #include "../lv_misc/lv_task.h"

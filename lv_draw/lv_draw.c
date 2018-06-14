@@ -6,11 +6,11 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
-
 #include <stdio.h>
 #include <stdbool.h>
 #include "lv_draw.h"
+
+#include "../lv_conf_lib.h"
 #include "lv_draw_rbasic.h"
 #include "lv_draw_vbasic.h"
 #include "../lv_misc/lv_circ.h"

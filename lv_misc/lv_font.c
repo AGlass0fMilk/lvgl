@@ -6,10 +6,9 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
-
 #include <stddef.h>
 #include "lv_font.h"
+#include "../lv_conf_lib.h"
 
 /*********************
  *      DEFINES

@@ -7,7 +7,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
+#include "../lv_conf_lib.h"
 #if USE_LV_TA != 0
 
 #include "lv_ta.h"

@@ -6,7 +6,7 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
+#include "../lv_conf_lib.h"
 #if USE_LV_IMG != 0
 
 /*Testing of dependencies*/

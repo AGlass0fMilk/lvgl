@@ -7,10 +7,10 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "../../lv_conf.h"
 #include "lv_mem.h"
 #include "lv_math.h"
 #include <string.h>
+#include "../lv_conf_lib.h"
 
 #if LV_MEM_CUSTOM != 0
 #include LV_MEM_CUSTOM_INCLUDE
