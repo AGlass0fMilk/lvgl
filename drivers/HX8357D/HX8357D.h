@@ -25,11 +25,20 @@
 
 #include "DisplayDriver.h"
 
+#include "hx8357d_registers.h"
+
 class HX8357D : public DisplayDriver
 {
 	public:
 
+		HX8357D() { }
+
 		virtual ~HX8357D() {}
+
+		/*
+		 * Initializes the display driver
+		 */
+		virtual void init(void) = 0;
 
 		/*
 		 * @brief Flush the content of the internal buffer to the specific area on the display

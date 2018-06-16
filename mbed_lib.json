@@ -230,5 +230,10 @@
 	    "macro_name": "USE_LV_SW",
 	    "value": 1
 	}
+    },
+    "target_overrides": {
+	"STM32F407xG": {
+	    "device_has_add": ["I8080_8BIT"]
+	}
     }
 }

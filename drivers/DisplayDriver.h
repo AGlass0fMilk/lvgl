@@ -19,6 +19,11 @@ class DisplayDriver
 		virtual ~DisplayDriver() { }
 
 		/*
+		 * Initializes the display driver
+		 */
+		virtual void init(void) = 0;
+
+		/*
 		 * @brief Flush the content of the internal buffer to the specific area on the display
 		 * You can use DMA or any hardware acceleration to do this operation in the background but
 		 * this->flush_ready() has to be called when finished
