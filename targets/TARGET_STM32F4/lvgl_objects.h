@@ -23,15 +23,17 @@
 #ifndef LVGL_TARGETS_TARGET_STM32F4_LVGL_OBJECTS_H_
 #define LVGL_TARGETS_TARGET_STM32F4_LVGL_OBJECTS_H_
 
+#include "stm32f4xx_hal_sram.h"
+
 #ifdef _cplusplus
 extern "C" {
 #endif
 
-typedef struct i8080_8bit_s
+struct i8080_8bit_s
 {
-		uint32_t data_address;
-		uint32_t command_address;
-} i8080_8bit_s;
+		SRAM_HandleTypeDef sram_handle;
+		FMC_NORSRAM_TimingTypeDef timing;
+};
 
 #ifdef _cplusplus
 }

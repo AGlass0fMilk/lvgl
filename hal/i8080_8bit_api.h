@@ -35,7 +35,7 @@ extern "C" {
 
 /** i8080_8bit hal structure. i8080_8bit_s is declared in the target's hal
  */
-typedef i8080_8bit_s i8080_8bit_t;
+typedef struct i8080_8bit_s i8080_8bit_t;
 
 /**
  * \defgroup hal_i8080_8bit hal functions

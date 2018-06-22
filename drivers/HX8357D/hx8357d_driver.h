@@ -26,6 +26,10 @@
 #include "stdint.h"
 #include "i8080_8bit_api.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void hx8357d_init(i8080_8bit_t* obj);
 
 void hx8357d_nop(i8080_8bit_t* obj);
@@ -58,5 +62,9 @@ void hx8357d_set_stba(i8080_8bit_t* obj, uint8_t* mode);
 void hx8357d_set_cyc(i8080_8bit_t* obj, uint8_t* mode);
 void hx8357d_set_color_mode(i8080_8bit_t* obj, uint8_t mode);
 void hx8357d_set_com(i8080_8bit_t* obj, uint8_t mode);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* LVGL_DRIVERS_HX8357D_HX8357D_DRIVER_H_ */

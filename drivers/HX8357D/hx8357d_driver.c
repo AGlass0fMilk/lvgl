@@ -21,7 +21,6 @@
  *      Author: gdbeckstein
  */
 
-#include "i8080_8bit_api.h"
 #include "hx8357d_driver.h"
 #include "hx8357d_registers.h"
 
@@ -155,8 +154,11 @@ void hx8357d_display_off(i8080_8bit_t* obj)
 
 void hx8357d_set_column_address(i8080_8bit_t* obj, uint16_t col_start, uint16_t col_end)
 {
-	uint8_t cmd[] = { HX8357_CASET, (col_start & 0xFF00), (col_start & 0x00FF),
-			(col_end & 0xFF00), (col_end & 0x00FF)
+	uint8_t cmd[] = { HX8357_CASET,
+			(uint8_t)((col_start & 0xFF00) >> 8),
+			(uint8_t)((col_start & 0x00FF)),
+			(uint8_t)((col_end & 0xFF00) >> 8),
+			(uint8_t)((col_end & 0x00FF))
 	};
 
 	i8080_8bit_write_bytes(obj, cmd, 5);
@@ -164,8 +166,11 @@ void hx8357d_set_column_address(i8080_8bit_t* obj, uint16_t col_start, uint16_t 
 
 void hx8357d_set_row_address(i8080_8bit_t* obj, uint16_t row_start, uint16_t row_end)
 {
-	uint8_t cmd[] = { HX8357_CASET, (row_start & 0xFF00), (row_start & 0x00FF),
-				(row_end & 0xFF00), (row_end & 0x00FF)
+	uint8_t cmd[] = { HX8357_PASET,
+				(uint8_t)((row_start & 0xFF00) >> 8),
+				(uint8_t)((row_start & 0x00FF)),
+				(uint8_t)((row_end & 0xFF00) >> 8),
+				(uint8_t)((row_end & 0x00FF))
 		};
 
 	i8080_8bit_write_bytes(obj, cmd, 5);
