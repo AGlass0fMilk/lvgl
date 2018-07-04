@@ -70,11 +70,6 @@
 	    "macro_name": "LV_COLOR_DEPTH",
 	    "value": 16
 	},
-	"transparent_color": {
-	    "help": "Image pixels with this color will not be drawn (with chroma keying)",
-	    "macro_name": "LV_COLOR_TRANSP",
-	    "value": "LV_COLOR_LIME"
-	},
 	"utf8_enabled": {
 	    "help": "Enable UTF-8 coded Unicode character usage",
 	    "macro_name": "LV_TXT_UTF8",

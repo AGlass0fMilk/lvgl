@@ -113,7 +113,7 @@
 #endif
 
 #ifndef LV_COLOR_TRANSP
-#define LV_COLOR_TRANSP    LV_COLOR_LIME          /*Images pixels with this color will not be drawn (with chroma keying)*/
+#define LV_COLOR_TRANSP    LV_COLOR_BLACK          /*Images pixels with this color will not be drawn (with chroma keying)*/
 #endif
 
 /*Text settings*/
@@ -194,17 +194,17 @@
 /* More info about fonts: https://littlevgl.com/basics#fonts
  * To enable a built-in font use 1,2,4 or 8 values
  * which will determine the bit-per-pixel */
-#define LV_FONT_DEFAULT        &lv_font_dejavu_10     /*Always set a default font from the built-in fonts*/
+#define LV_FONT_DEFAULT        &lv_font_dejavu_20     /*Always set a default font from the built-in fonts*/
 
 #define USE_LV_FONT_DEJAVU_10              1
 #define USE_LV_FONT_DEJAVU_10_LATIN_SUP    0
 #define USE_LV_FONT_DEJAVU_10_CYRILLIC     0
-#define USE_LV_FONT_SYMBOL_10              0
+#define USE_LV_FONT_SYMBOL_10              1
 
-#define USE_LV_FONT_DEJAVU_20              4
+#define USE_LV_FONT_DEJAVU_20              1
 #define USE_LV_FONT_DEJAVU_20_LATIN_SUP    0
 #define USE_LV_FONT_DEJAVU_20_CYRILLIC     0
-#define USE_LV_FONT_SYMBOL_20              4
+#define USE_LV_FONT_SYMBOL_20              1
 
 #define USE_LV_FONT_DEJAVU_30              0
 #define USE_LV_FONT_DEJAVU_30_LATIN_SUP    0

@@ -27,6 +27,7 @@ SSD1306Display::SSD1306Display(mbed::I2C* i2c) : driver(i2c), _i2c(i2c)
 {
 	// Clear the display RAM
 	memset(display_ram, 0, sizeof(display_ram));
+	memset(page_valid, 0, sizeof(page_valid));
 }
 
 void SSD1306Display::init(void)
@@ -48,28 +49,28 @@ void SSD1306Display::map(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 		const lv_color_t* color_p)
 {
 	lv_color_t* ptr = (lv_color_t*) color_p;
-	for(int i = x1; i < x2; i++)
+	for(int i = x1; i <= x2; i++)
 	{
-		for(int j = y1; j < y2; j++)
+		for(int j = y1; j <= y2; j++)
 		{
 			set_pixel(i, j, *ptr);
 			ptr++;
 		}
 	}
-	flush_ram(x1, y1, x2, y2);
+	//flush_ram(x1, y1, x2, y2);
 }
 
 void SSD1306Display::fill(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 		lv_color_t color)
 {
-	for(int i = x1; i < x2; i++)
+	for(int i = x1; i <= x2; i++)
 	{
-		for(int j = y1; j < y2; j++)
+		for(int j = y1; j <= y2; j++)
 		{
 			set_pixel(i, j, color);
 		}
 	}
-	flush_ram(x1, y1, x2, y2);
+	//flush_ram(x1, y1, x2, y2);
 }
 
 void SSD1306Display::set_pixel(int32_t x, int32_t y, lv_color_t color)
@@ -77,6 +78,9 @@ void SSD1306Display::set_pixel(int32_t x, int32_t y, lv_color_t color)
 	// Calculate the byte/bit location in the display RAM
 	uint16_t byte_idx = get_byte_index(x, y);
 	uint8_t bit_idx = get_bit_index(y);
+
+	// Invalidate the page
+	page_valid[y >> 3] = false;
 
 	// Set clear the bit accordingly
 	if(color.full)
@@ -90,7 +94,8 @@ void SSD1306Display::flush_ram(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 	uint16_t byte_start = get_byte_index(x1, y1);
 	uint16_t byte_end = get_byte_index(x2, y2);
 
-	//driver.hv_set_page_address()
+	driver.hv_set_page_address((y1 >> 3), (y2 >> 3));
+	driver.hv_set_column_address(byte_start, byte_end);
 
 	_i2c->start();
 	_i2c->write(0x3C << 1);
@@ -100,6 +105,21 @@ void SSD1306Display::flush_ram(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 		_i2c->write(display_ram[i]);
 	}
 	_i2c->stop();
+}
+
+void SSD1306Display::redraw_pages(void)
+{
+	// Check each page validation flag and redraw pages as necessary
+	for(int i = 0; i < sizeof(page_valid); i++)
+	{
+		if(!page_valid[i])
+		{
+			// Page has been modified, redraw it
+			int32_t y = (i << 3); // i * 8
+			flush_ram(0, y, 127, y);
+			page_valid[i] = true;
+		}
+	}
 }
 //
 //void SSD1306Display::flush_ram(void)

@@ -79,7 +79,7 @@ class SSD1306Display : public DisplayDriver
 
 #endif
 
-	protected:
+	//protected:
 
 		inline uint16_t get_byte_index(int32_t x, int32_t y)
 		{
@@ -94,9 +94,13 @@ class SSD1306Display : public DisplayDriver
 		void set_pixel(int32_t x, int32_t y, lv_color_t color);
 		void flush_ram(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
+		void redraw_pages(void); /*!< Called periodically to draw invalidated (modifed) pages */
+
 	protected:
 
 		uint8_t display_ram[1024]; /*!< 1kB of display data (monochrome 128X64 bits) */
+
+		bool page_valid[8];	/*!< Keeps track of pages that are modified */
 
 		SSD1306 driver;
 
