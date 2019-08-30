@@ -121,10 +121,15 @@ typedef union
         uint16_t blue : 5;
         uint16_t green : 6;
         uint16_t red : 5;
-#else
+#elif LV_COLOR_16_SWAP == 1
         uint16_t green_h : 3;
         uint16_t red : 5;
         uint16_t blue : 5;
+        uint16_t green_l : 3;
+#elif LV_COLOR_16_SWAP == 2
+        uint16_t green_h : 3;
+        uint16_t blue : 5;
+        uint16_t red : 5;
         uint16_t green_l : 3;
 #endif
     } ch;
@@ -394,8 +399,19 @@ static inline lv_color_t lv_color_make(uint8_t r8, uint8_t g8, uint8_t b8)
     color.ch.red   = (uint16_t)(r8 >> 3);
     return color;
 }
-#else
+#elif LV_COLOR_16_SWAP == 1
 #define LV_COLOR_MAKE(r8, g8, b8) ((lv_color_t){{g8 >> 5, r8 >> 3, b8 >> 3, (g8 >> 2) & 0x7}})
+static inline lv_color_t lv_color_make(uint8_t r8, uint8_t g8, uint8_t b8)
+{
+    lv_color_t color;
+    color.ch.green_h = (uint16_t)(g8 >> 5);
+    color.ch.red = (uint16_t)(r8 >> 3);
+    color.ch.blue = (uint16_t)(b8 >> 3);
+    color.ch.green_l = (uint16_t)((g8 >> 2) & 0x7);
+    return color;
+}
+#elif LV_COLOR_16_SWAP == 2
+#define LV_COLOR_MAKE(r8, g8, b8) ((lv_color_t){{g8 >> 5, b8 >> 3, 8 >> 3, (g8 >> 2) & 0x7}})
 static inline lv_color_t lv_color_make(uint8_t r8, uint8_t g8, uint8_t b8)
 {
     lv_color_t color;
